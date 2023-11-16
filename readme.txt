@@ -80,15 +80,20 @@ Atualizado para funcionamento em Linux e Windows.
 
 ## Histórico de lançamentos
 
-    * 0.1
-        * MVP do sistema rAVA
-    * 0.1.1
-        * Mudança no nome do bot
-    * 0.2
-        * Divisão entre micro e full-rAVA
+    * 0.1if entrada_usuario in ["EXIT", "QUIT", "SAIR"]:
+                print("FOI ÓTIMO CONVERSAR COM VOCÊ")
+                log(entrada_usuario, "FOI ÓTIMO CONVERSAR COM VOCÊ", logs)
+                break
     * 0.3
         * Criação de logs
 
+## Implementações para evolução do rAVADAE
+
+    1- Execução da main fora da pasta base, ou seja, estando em outro diretório.
+    2- Envio de mensagem de texto recebida pela API Telegram para o cérebro
+    3- Armazenamento e devolução do processamento do texto recebido da API Telegram
+    4- Incremento da base de dados do cérebro
+    5- Possíveis interações com as imagens
 
 ## Meta
 
