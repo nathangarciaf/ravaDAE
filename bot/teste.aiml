@@ -5,9 +5,23 @@
             OI, MEU NOME É <bot name="name" />, QUAL O SEU?
         </template>
     </category>
+
+    <category>        
+        <pattern>OI *</pattern>
+        <template>
+            OI, MEU NOME É <bot name="name" />, QUAL O SEU?
+        </template>
+    </category>
      
     <category>        
         <pattern>COÉ</pattern>
+        <template>
+            <srai>OI</srai>
+        </template>
+    </category>
+
+    <category>        
+        <pattern>COÉ *</pattern>
         <template>
             <srai>OI</srai>
         </template>
@@ -22,6 +36,27 @@
 
     <category>        
         <pattern>OLÁ</pattern>
+        <template>
+            <srai>OI</srai>
+        </template>
+    </category>
+
+    <category>        
+        <pattern>OLÁ *</pattern>
+        <template>
+            <srai>OI</srai>
+        </template>
+    </category>
+
+    <category>        
+        <pattern>OLA</pattern>
+        <template>
+            <srai>OI</srai>
+        </template>
+    </category>
+
+    <category>        
+        <pattern>OLA *</pattern>
         <template>
             <srai>OI</srai>
         </template>
