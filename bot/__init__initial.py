@@ -72,15 +72,7 @@ def log(entrada, resposta, arq):
     arq.write(resposta.upper()+'\n')
     arq.write("\n")    
    
-def run_bot_terminal(fala,userID):
-    #GERANDO ARQUIVO PARA ARMAZENAR AS FALAS DO USUÁRIO
-    f_name = "interact" + userID + ".txt"
-    f_userInteract = open(f_name, "a")
-    fala += "\n"
-    f_userInteract.write(fala)
-    f_userInteract.close()
-    ##
-
+def run_bot_terminal(fala):
     #GERANDO ARQUVIO PARA O LOG DE CONVERSA
     n = ""
     k = 1
@@ -91,47 +83,39 @@ def run_bot_terminal(fala,userID):
                 n = str(k)
                 break
 
-    #logs = open(f'logs{n}.txt', "a", encoding='utf-8')
+    logs = open(f'logs{n}.txt', "a", encoding='utf-8')
     ##
 
-    f_userInteract = open(f_name, "r")
-    userInteractList = f_userInteract.readlines()
-    size = len(userInteractList)
-    for i in range(size):
-        entrada_usuario = pre_processamento(userInteractList[i])
-        tgt = dispatcher(entrada_usuario)
-        if tgt == 'aiml':
-            if(i != size-1):
+    try:
+        x = 0
+        while True:
+            if(x==0):
+                entrada_usuario = pre_processamento(fala)
+                x+=1
+            else:
+                entrada_usuario = pre_processamento(input("> "))
+            
+            if entrada_usuario in ["EXIT", "QUIT", "SAIR"]:
+                print("FOI ÓTIMO CONVERSAR COM VOCÊ")
+                log(entrada_usuario, "FOI ÓTIMO CONVERSAR COM VOCÊ", logs)
+                break
+            
+            tgt = dispatcher(entrada_usuario)
+            
+            if tgt == 'aiml':
                 resp = kernel.respond(entrada_usuario, session_id)
-                f_name = "resp" + userID + ".txt"
-                f_resp = open(f_name,"w")
-                f_resp.write(resp)
-                f_resp.close()
-        elif tgt == 'arit':
-            # resp = aritmetica(entrada_usuario)
-            pass    
-        elif tgt == 'logic':
-            # resp = logica(entrada_usuario)
-            pass
-
-
-    if(fala != ""):
-        entrada_usuario = pre_processamento(fala)
-
-        tgt = dispatcher(entrada_usuario)
-        if tgt == 'aiml':
-            resp = kernel.respond(entrada_usuario, session_id)
-            f_name = "resp" + userID + ".txt"
-            f_resp = open(f_name,"w")
-            f_resp.write(resp)
-            f_resp.close()
-            #print(resp)
-        elif tgt == 'arit':
-            # resp = aritmetica(entrada_usuario)
-            pass    
-        elif tgt == 'logic':
-            # resp = logica(entrada_usuario)
-            pass
-
-    f_userInteract.close()
-    #log(entrada_usuario, resp, logs)    
+                print(resp)
+            elif tgt == 'arit':
+                # resp = aritmetica(entrada_usuario)
+                pass
+            elif tgt == 'logic':
+                # resp = logica(entrada_usuario)
+                pass
+            
+            print("")
+            
+            log(entrada_usuario, resp, logs)
+    
+    except KeyboardInterrupt:
+        print("")
+        print("FOI ÓTIMO CONVERSAR COM VOCÊ")
