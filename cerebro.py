@@ -1,4 +1,6 @@
 import sys
+import os
+
 from bot import run_bot_terminal
 
 def main():
